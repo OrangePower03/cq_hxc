@@ -61,6 +61,12 @@
             <artifactId>ruoyi-generator</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>com.example</groupId>
+            <artifactId>mybatis-plugin</artifactId>
+            <version>1.0.0-TEST</version>
+        </dependency>
+
     </dependencies>
 
     <build>

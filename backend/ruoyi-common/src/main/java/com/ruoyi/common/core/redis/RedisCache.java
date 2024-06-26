@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
+
+import org.redisson.Redisson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.BoundSetOperations;
 import org.springframework.data.redis.core.HashOperations;
@@ -24,6 +26,34 @@ public class RedisCache
 {
     @Autowired
     public RedisTemplate redisTemplate;
+
+    @Autowired
+    private Redisson redisson;
+
+    public <T> T hashGetWithExpire(String key, String hashKey, long timeout) {
+        T res = (T) redisTemplate.opsForHash().get(key, hashKey);
+        if(res != null)
+            redisTemplate.expire(key, timeout, TimeUnit.SECONDS);
+        return res;
+    }
+
+    public <T> void hashPutWithTimeout(String key, String hashKey, T obj, long timeout) {
+        redisTemplate.opsForHash().put(key, hashKey, obj);
+        redisTemplate.expire(key, timeout, TimeUnit.SECONDS);
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public boolean tryLock(String name) {
+        return redisson.getLock(name).tryLock();
+    }
+
+    public void unlock(String name) {
+        redisson.getLock(name).unlock();
+    }
 
     /**
      * 缓存基本的对象，Integer、String、实体类等

@@ -1,5 +1,8 @@
 package com.ruoyi.framework.config;
 
+import org.redisson.Redisson;
+import org.redisson.config.Config;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cache.annotation.CachingConfigurerSupport;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
@@ -18,6 +21,25 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
 @EnableCaching
 public class RedisConfig extends CachingConfigurerSupport
 {
+    @Value("${spring.redis.host}")
+	private String redisHost;
+
+	@Value("${spring.redis.port}")
+	private int redisPort;
+
+    @Value("${spring.redis.password}")
+    private String password;
+
+    @Bean()
+    public Redisson redisson() {
+        Config config=new Config();
+        config.useSingleServer() // 单体服务
+                .setAddress("redis://" + redisHost + ":" + redisPort)
+                .setDatabase(0)
+                .setPassword(password);
+        return (Redisson) Redisson.create(config);
+    }
+
     @Bean
     @SuppressWarnings(value = { "unchecked", "rawtypes" })
     public RedisTemplate<Object, Object> redisTemplate(RedisConnectionFactory connectionFactory)

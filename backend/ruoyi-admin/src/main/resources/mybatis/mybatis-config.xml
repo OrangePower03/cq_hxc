@@ -6,7 +6,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
     <!-- 全局参数 -->
     <settings>
         <!-- 使全局的映射器启用或禁用缓存 -->
-        <setting name="cacheEnabled"             value="true"   />
+        <setting name="cacheEnabled"             value="false"   />
         <!-- 允许JDBC 支持自动生成主键 -->
         <setting name="useGeneratedKeys"         value="true"   />
         <!-- 配置默认的执行器.SIMPLE就是普通执行器;REUSE执行器会重用预处理语句(prepared statements);BATCH执行器将重用语句并执行批量更新 -->
@@ -16,5 +16,9 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         <!-- 使用驼峰命名法转换字段 -->
 		<!-- <setting name="mapUnderscoreToCamelCase" value="true"/> -->
 	</settings>
-	
+
+    <plugins>
+        <!--要注意，分页必须优先于缓存，否则分页数据会缓存多份。按照文件读取来说，越上面就越后执行-->
+        <plugin interceptor="com.example.mybatisPlugin.plugin.impl.CacheInterceptor"/>
+    </plugins>
 </configuration>

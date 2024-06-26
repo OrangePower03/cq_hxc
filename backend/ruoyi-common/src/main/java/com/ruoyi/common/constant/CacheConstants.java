@@ -7,6 +7,15 @@ package com.ruoyi.common.constant;
  */
 public class CacheConstants
 {
+    // 数据库缓存的前缀
+    public static final String DATABASE_CACHE = "database_cache:";
+
+    // 数据库缓存时的锁前缀
+    public static final String DATABASE_CACHE_LOCK = "lock:";
+
+    // 缓存过期时间，单位为秒
+    public static final long DATABASE_CACHE_EXPIRE_TIME = 600;
+
     /**
      * 登录用户 redis key
      */
