@@ -35,6 +35,7 @@ server:
 
 # 日志配置
 logging:
+  config: classpath:logback.xml
   level:
     com.ruoyi: debug
     org.springframework: warn

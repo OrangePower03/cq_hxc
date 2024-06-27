@@ -1,3 +1,4 @@
+drop database if exists ch_order;
 create database ch_order;
 use ch_order;
 
@@ -15,6 +16,11 @@ create table goods_order(
     update_by bigint not null comment '更新的用户id',
     del_flag smallint comment '删除状态，0表示正常，1表示删除' default 0
 ) comment '订单信息';
+create index idx_goods_id on goods_order(goods_id);
+create index idx_receive_message_id on goods_order(receive_message_id);
+create index idx_status on goods_order(status);
+create index idx_payment_method on goods_order(payment_method);
+
 
 create table receive_message(
     id varchar(255) primary key,
@@ -24,3 +30,5 @@ create table receive_message(
     receive_address text not null comment '收货地址'
 ) comment '收货信息，一个用户可以有多个';
 create index idx_user_id on receive_message(user_id);
+create index idx_name on receive_message(name);
+create index idx_phone on receive_message(phone);

@@ -1,8 +1,8 @@
 package com.example.mybatisPlugin.plugin;
 
+import com.example.webCommon.utils.AssertUtils;
 import com.ruoyi.common.annotation.SqlCacheDisable;
 import com.ruoyi.common.annotation.SqlCacheEnable;
-import com.ruoyi.common.utils.AssertUtils;
 import org.apache.ibatis.executor.Executor;
 import org.apache.ibatis.mapping.MappedStatement;
 import org.apache.ibatis.mapping.SqlCommandType;

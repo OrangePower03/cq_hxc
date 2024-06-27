@@ -1,9 +1,9 @@
 package com.example.mybatisPlugin.plugin.impl;
 
 import com.example.mybatisPlugin.plugin.AbstractExecutorInterceptor;
+import com.example.webCommon.utils.AssertUtils;
 import com.ruoyi.common.constant.CacheConstants;
 import com.ruoyi.common.core.redis.RedisCache;
-import com.ruoyi.common.utils.AssertUtils;
 import com.ruoyi.common.utils.spring.SpringUtils;
 import org.apache.ibatis.executor.Executor;
 import org.apache.ibatis.mapping.MappedStatement;
