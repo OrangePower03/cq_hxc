@@ -3,7 +3,7 @@
     <el-row :gutter="20">
       <el-col :sm="24" :lg="24">
         <blockquote class="text-warning" style="font-size: 14px">
-          <h4>推荐</h4>
+          <h4>11111111111</h4>
           <br />
           <el-link
             href="https://www.aliyun.com/minisite/goods?userCode=brki8iof"
