@@ -1,3 +1,4 @@
+drop database if exists ch_goods;
 create database ch_goods;
 use ch_goods;
 
@@ -5,19 +6,19 @@ use ch_goods;
   一个商品只能是一个分类，但能有多个标签
 */
 create table goods_category(
-    id bigint primary key,
+    id varchar(255) primary key,
     name varchar(255) not null comment '分类名字',
     create_time datetime default now() comment '创建时间',
     update_time datetime default now() comment '更新时间',
     create_by bigint not null comment '创建的用户id',
     update_by bigint not null comment '更新的用户id',
-    del_flag tinyint default 0 comment '删除标志，0表示未删除，1表示已删除'
+    del_flag smallint default 0 comment '删除标志，0表示未删除，1表示已删除'
 ) comment '分类表';
-
+create index idx_name on goods_category(name);
 
 create table goods(
     id varchar(255) primary key,
-    shop_id varchar(255) comment '商铺id',
+    store_id varchar(255) comment '商铺id',
     category_id bigint comment '分类id',
     name varchar(255) comment '商品名字',
     price decimal(10,2) comment '商品当前价格',
@@ -34,6 +35,12 @@ create table goods(
     update_by bigint not null comment '更新商品的用户id',
     del_flag smallint comment '删除标志，0表示未删除，1表示已删除' default 0
 ) comment '商品表';
+create index idx_store_id on goods(store_id);
+create index idx_category_id on goods(category_id);
+create index idx_name on goods(name);
+create index idx_price on goods(price);
+create index idx_score on goods(score);
+create index idx_sales on goods(sales);
 
 
 create table goods_image(
@@ -44,7 +51,6 @@ create table goods_image(
 create index idx_goods_id on goods_image(goods_id);
 
 
-
 create table goods_star(
     goods_id varchar(255) not null comment '商品id',
     user_id bigint not null comment '用户id',
@@ -53,9 +59,8 @@ create table goods_star(
 create index idx_user_id on goods_star(user_id);
 
 
-create table goods_tag(
+create table tag(
     id varchar(255) primary key,
-    goods_id varchar(255) not null comment '商品id',
     name varchar(255) not null comment '标签名称',
     create_time datetime default now() comment '创建时间',
     update_time datetime default now() comment '更新时间',
@@ -63,6 +68,15 @@ create table goods_tag(
     update_by bigint not null comment '更新的用户id',
     del_flag tinyint default 0 comment '删除标志，0表示未删除，1表示已删除'
 ) comment '标签表';
+create index idx_name on tag(name);
+
+
+create table goods_tag(
+    tag_id varchar(255),
+    goods_id varchar(255),
+    primary key (tag_id, goods_id)
+);
+create index idx_goods_id on goods_tag(goods_id);
 
 create table goods_price(
     id varchar(255) primary key,
@@ -72,3 +86,4 @@ create table goods_price(
     create_by bigint not null comment '创建的用户id',
     del_flag smallint default 0 comment '删除标志，0表示未删除，1表示已删除'
 ) comment '商品价格变动表，这里存放的都是已经过期的价格';
+create index idx_goods_id on goods_price(goods_id);

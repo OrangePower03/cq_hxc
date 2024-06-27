@@ -80,14 +80,14 @@
 		<appender-ref ref="console" />
 	</root>
 
-	<!--系统操作日志-->
-    <root level="info">
-        <appender-ref ref="file_info" />
-        <appender-ref ref="file_error" />
-    </root>
+<!--	&lt;!&ndash;系统操作日志&ndash;&gt;-->
+<!--    <root level="info">-->
+<!--        <appender-ref ref="file_info" />-->
+<!--        <appender-ref ref="file_error" />-->
+<!--    </root>-->
 
-	<!--系统用户操作日志-->
-    <logger name="sys-user" level="info">
-        <appender-ref ref="sys-user"/>
-    </logger>
+<!--	&lt;!&ndash;系统用户操作日志&ndash;&gt;-->
+<!--    <logger name="sys-user" level="info">-->
+<!--        <appender-ref ref="sys-user"/>-->
+<!--    </logger>-->
 </configuration>

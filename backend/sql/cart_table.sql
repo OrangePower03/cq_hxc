@@ -1,3 +1,4 @@
+drop database if exists ch_cart;
 create database ch_cart;
 use ch_cart;
 
@@ -12,4 +13,4 @@ create table cart(
     update_by bigint not null comment '更新的用户id',
     del_flag smallint comment '删除状态，0表示正常，1表示删除' default 0
 ) comment '购物车表';
-
+create index idx_user_id on cart(user_id);

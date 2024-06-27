@@ -1,6 +1,6 @@
 package com.example.mybatisPlugin.plugin;
 
-import com.ruoyi.common.utils.AssertUtils;
+import com.example.webCommon.utils.AssertUtils;
 import org.apache.ibatis.mapping.MappedStatement;
 import org.apache.ibatis.plugin.Invocation;
 import reactor.util.annotation.NonNull;

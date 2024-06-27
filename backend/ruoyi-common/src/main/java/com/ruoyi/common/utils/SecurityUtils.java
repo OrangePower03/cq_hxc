@@ -1,11 +1,13 @@
 package com.ruoyi.common.utils;
 
+import com.ruoyi.common.utils.spring.SpringUtils;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import com.ruoyi.common.constant.HttpStatus;
 import com.ruoyi.common.core.domain.model.LoginUser;
 import com.ruoyi.common.exception.ServiceException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 /**
  * 安全服务工具类
@@ -14,6 +16,8 @@ import com.ruoyi.common.exception.ServiceException;
  */
 public class SecurityUtils
 {
+    private static PasswordEncoder encoder;
+
     /**
      * 用户ID
      **/
@@ -90,8 +94,9 @@ public class SecurityUtils
      */
     public static String encryptPassword(String password)
     {
-        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        return passwordEncoder.encode(password);
+        if(encoder == null) encoder = SpringUtils.getBean(PasswordEncoder.class);
+//        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        return encoder.encode(password);
     }
 
     /**
@@ -103,8 +108,9 @@ public class SecurityUtils
      */
     public static boolean matchesPassword(String rawPassword, String encodedPassword)
     {
-        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        return passwordEncoder.matches(rawPassword, encodedPassword);
+        if(encoder == null) encoder = SpringUtils.getBean(PasswordEncoder.class);
+//        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        return encoder.matches(rawPassword, encodedPassword);
     }
 
     /**

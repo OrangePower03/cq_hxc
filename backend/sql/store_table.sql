@@ -1,3 +1,4 @@
+drop database if exists ch_store;
 create database ch_store;
 use ch_store;
 
@@ -15,6 +16,10 @@ create table store(
     update_by bigint not null comment '更新商铺的用户id',
     del_flag smallint comment '删除状态，0表示正常，1表示删除' default 0
 ) comment '店铺信息';
+create index idx_name on store(name);
+create index idx_follow_count on store(follow_count);
+create index idx_score on store(score);
+
 
 create table store_user(
     store_id varchar(255) not null comment '店铺id',
