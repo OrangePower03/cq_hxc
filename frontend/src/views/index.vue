@@ -12,7 +12,7 @@
             >https://www.aliyun.com/minisite/goods?userCode=brki8iof</el-link
           >
           <br />
-          领取腾讯云通用云产品2860优惠券
+
           <br />
           <el-link
             href="https://cloud.tencent.com/redirect.php?redirect=1025&cps_key=198c8df2ed259157187173bc7f4f32fd&from=console"
