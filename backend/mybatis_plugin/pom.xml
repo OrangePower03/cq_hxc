@@ -29,6 +29,20 @@
 			<artifactId>junit-jupiter</artifactId>
 			<scope>test</scope>
 		</dependency>
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis</artifactId>
+            <version>3.5.14</version>
+            <scope>compile</scope>
+        </dependency>
+		<dependency>
+			<groupId>io.projectreactor</groupId>
+			<artifactId>reactor-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.ruoyi</groupId>
+			<artifactId>ruoyi-common</artifactId>
+		</dependency>
 	</dependencies>
 
 	<build>
