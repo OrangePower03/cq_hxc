@@ -14,7 +14,8 @@ public class AssertUtils {
     }
 
     public static void isFalse(boolean ret, String msg) {
-        if(ret) throw new RuntimeException(msg);
+        if(ret)
+            throw new RuntimeException(msg);
     }
 
 
