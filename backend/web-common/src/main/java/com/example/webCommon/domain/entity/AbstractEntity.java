@@ -6,9 +6,7 @@ import lombok.Data;
 import java.util.Date;
 
 @Data
-public abstract class AbstractEntity<T> implements BaseEntity {
-    private T id;
-
+public abstract class AbstractEntity implements BaseEntity {
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date createTime;
 

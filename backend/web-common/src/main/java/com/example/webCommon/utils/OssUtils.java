@@ -7,6 +7,7 @@ import com.aliyun.oss.OSSClientBuilder;
 import com.aliyun.oss.OSSException;
 import com.aliyun.oss.common.auth.CredentialsProviderFactory;
 import com.aliyun.oss.common.auth.EnvironmentVariableCredentialsProvider;
+import com.example.webCommon.utils.object.StringUtils;
 import lombok.Data;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -97,7 +98,7 @@ public class OssUtils {
     }
 
     public static boolean verifyFile(String fileName, Set<String> suffixSet) {
-        if(Strings.isEmpty(fileName)) {
+        if(StringUtils.isEmpty(fileName)) {
             return false;
         }
         int pointIndex = fileName.lastIndexOf(".");

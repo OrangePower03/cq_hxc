@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.user.mapper.SysUserMapper">
+    <insert id="addOne" useGeneratedKeys="true" keyProperty="id">
+        insert into ch_user.sys_user (username, password, nickname, login_ip, phone)
+        values (#{username}, #{password}, #{nickname}, #{loginIp}, #{phone})
+    </insert>
+    <insert id="addRoleRelation">
+        insert into ch_user.sys_user_role (user_id, role_id)
+        values
+        <foreach collection="roleIds" open="(" close=")" separator="," item="roleId">
+            #{userId}, #{roleId}
+        </foreach>
+    </insert>
+
+
+    <select id="selectOne" resultType="com.example.webCommon.domain.entity.user.SysUser">
+        select * from ch_user.sys_user where username = #{username} and del_flag = 0
+    </select>
+
+    <select id="selectCount" resultType="java.lang.Integer">
+        select count(*) from ch_user.sys_user where username = #{username} and del_flag = 0
+    </select>
+    <select id="findRoleByUserId" resultType="java.lang.String">
+        select ch_user.sys_role.role_key from ch_user.sys_role where id in(
+            select role_id from ch_user.sys_user_role where user_id = #{userId} and del_flag = 0
+        ) and del_flag = 0
+    </select>
+    <select id="selectMenuByRoles" resultType="com.example.webCommon.domain.entity.user.SysMenu">
+        select * from ch_user.sys_menu where id in
+        <foreach collection="roleKeys" open="(" close=")" separator="," item="roleKey">
+            select menu_id from ch_user.sys_role_menu where role_id = (
+                select id from ch_user.sys_role where role_key = #{roleKey} and del_flag = 0
+            )
+        </foreach>
+    </select>
+
+</mapper>

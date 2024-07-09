@@ -11,7 +11,8 @@ import lombok.NoArgsConstructor;
 @EqualsAndHashCode(callSuper = true)
 @AllArgsConstructor
 @NoArgsConstructor
-public class GoodsCategory extends AbstractEntity<String> {
+public class GoodsCategory extends AbstractEntity {
+    String id;
     //分类名字
     private String name;
 }

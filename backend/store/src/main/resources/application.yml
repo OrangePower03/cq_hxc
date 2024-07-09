@@ -9,16 +9,16 @@ spring:
         password: nacosstart
         namespace: cq_hxc
         shared-configs:
-          - data-id: redis-config.yml
-          - data-id: mybatis-config.yml
+          - data-id: redis_config.yml
+          - data-id: mybatis_config.yml
           - data-id: nacos_discovery.yml
 
 
   config:
     import:
-      - optional:nacos:store-server.yml
-      - optional:nacos:redis-config.yml
-      - optional:nacos:mybatis-config.yml
+      - optional:nacos:user-server.yml
+      - optional:nacos:redis_config.yml
+      - optional:nacos:mybatis_config.yml
       - optional:nacos:nacos_discovery.yml
 
 #      discovery:
