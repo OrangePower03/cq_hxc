@@ -10,7 +10,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-public class Goods extends AbstractEntity<String> {
+public class Goods extends AbstractEntity {
+    String id;
     //商铺id
     private String storeId;
     //分类id
