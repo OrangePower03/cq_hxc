@@ -107,6 +107,8 @@
 <script lang="ts">
 import { defineComponent, ref, onMounted } from 'vue';
 import "../assets/css/index.css";
+import "../assets/layui/css/layui.css";
+import "../assets/css/header.css";
 
 interface Product {
   id: number;
